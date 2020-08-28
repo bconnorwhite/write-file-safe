@@ -18,7 +18,7 @@
     "build": "babel ./src --out-dir ./build --config-file ./babel.config.json --extensions .ts --delete-dir-on-start && tsc --project ./tsconfig.json",
     "prepublishOnly": "yarn build"
   },
-  "dependencies": {
+  "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
     "@babel/plugin-transform-runtime": "^7.11.0",
