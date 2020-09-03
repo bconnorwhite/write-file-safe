@@ -16,7 +16,8 @@
   },
   "scripts": {
     "build": "bob build",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "test": "node ./test.js"
   },
   "devDependencies": {
     "@bconnorwhite/bob": "^1.9.7",
