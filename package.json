@@ -1,6 +1,6 @@
 {
   "name": "write-file-safe",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Write files, and create parent directories if necessary.",
   "main": "./build/index.js",
   "author": "Connor White",
