@@ -34,6 +34,10 @@
     "release": "bob publish",
     "test": "bob test"
   },
+  "dependencies": {
+    "terminating-newline": "^1.2.4",
+    "write-dir-safe": "^1.0.0"
+  },
   "devDependencies": {
     "@bconnorwhite/bob": "^2.9.2",
     "@types/mock-fs": "^4.10.0",
@@ -50,9 +54,5 @@
   },
   "npmpackagejsonlint": {
     "extends": "npm-package-json-lint-config-bob"
-  },
-  "dependencies": {
-    "terminating-newline": "^1.2.4",
-    "write-dir-safe": "^1.0.0"
   }
 }
