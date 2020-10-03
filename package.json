@@ -52,7 +52,7 @@
     "extends": "npm-package-json-lint-config-bob"
   },
   "dependencies": {
-    "terminating-newline": "^1.2.2",
+    "terminating-newline": "^1.2.4",
     "write-dir-safe": "^1.0.0"
   }
 }

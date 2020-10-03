@@ -2498,6 +2498,11 @@ char-regex@^1.0.2:
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
   integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
 
+char-to-string@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/char-to-string/-/char-to-string-1.0.0.tgz#3e1d11c33a004930e8552966c066741ac67e2f1e"
+  integrity sha512-9WeQ+l5COfnFkuDmTJ5zXzMhb4xpMPDu24pD50cMvWT+Br9Sni1hlpvdPK/YpZl1+QI15f4pMWfyEzyyIHJr2Q==
+
 chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
@@ -3364,6 +3369,13 @@ end-of-stream@^1.1.0:
   integrity sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
   dependencies:
     once "^1.4.0"
+
+ends-with-string@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ends-with-string/-/ends-with-string-1.0.1.tgz#ce76999307ebef92d039e2cb895c22f0677540ec"
+  integrity sha512-TQg80EKJsnNfH9H/5HpAXKJP7YMYFkoUeS9ayMY60zwNoiNecv8D0+a9cycqdM8rhj/hfBqJb+9uLMsYP8d/Bw==
+  dependencies:
+    char-to-string "^1.0.0"
 
 enquirer@^2.3.5:
   version "2.3.6"
@@ -7738,6 +7750,14 @@ terminating-newline@^1.2.2:
   integrity sha512-IGk6ZR6uY3faRGhlWEKMyXmd4Ur1JhZEr9+9FZ1e90hU4qiTADxNoy/jpvuu1myyOcbKvQHhgx9tcQbDRnaHYg==
   dependencies:
     detect-newline "^3.1.0"
+
+terminating-newline@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/terminating-newline/-/terminating-newline-1.2.4.tgz#9dc00874648ba6c7300b6c50801fb6eca613ead1"
+  integrity sha512-zJ7ECSI+Ackgbck4h0n8tUg5Q/3vRpVV3T7ITb9w1NY6ezrA0oY0LTDEu1m3hstev7Ok4ZssS+UkL/PIXMz9vQ==
+  dependencies:
+    detect-newline "^3.1.0"
+    ends-with-string "^1.0.0"
 
 test-exclude@^6.0.0:
   version "6.0.0"

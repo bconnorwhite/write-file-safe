@@ -14,15 +14,17 @@ type Options = {
   appendNewline?: boolean;
 }
 
-function handleNewline(content: string, appendNewline?: boolean) {
+type ReturnType<T> = T extends Buffer ? Buffer : string;
+
+function handleNewline<T extends string | Buffer>(content: T, appendNewline?: boolean): ReturnType<T> {
   if(appendNewline ?? true) {
-    return addTerminatingNewline(content);
+    return addTerminatingNewline(content) as ReturnType<T>;
   } else {
-    return content;
+    return content as (string | Buffer) as ReturnType<T>
   }
 }
 
-export async function writeFile(path: string, content = "", options: Options = {}) {
+export async function writeFile(path: string, content: string | Buffer = "", options: Options = {}) {
   const directory = dirname(path);
   if(options.recursive ?? true) {
     await writeDir(directory);
@@ -34,7 +36,7 @@ export async function writeFile(path: string, content = "", options: Options = {
   });
 }
 
-export function writeFileSync(path: string, content = "", options: Options = {}) {
+export function writeFileSync(path: string, content: string | Buffer = "", options: Options = {}) {
   const directory = dirname(path);
   if(options.recursive ?? true) {
     writeDirSync(directory);
