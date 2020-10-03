@@ -1,26 +1,58 @@
 {
   "name": "write-file-safe",
   "version": "1.0.3",
-  "description": "Write files, and create parent directories if necessary.",
-  "main": "./build/index.js",
-  "author": "Connor White",
-  "keywords": [
-    "write",
-    "file",
-    "safe"
-  ],
+  "description": "Write files, and create parent directories if necessary",
   "license": "MIT",
+  "author": "Connor White",
+  "homepage": "https://connorwhite.org/github/write-file-safe",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bconnorwhite/write-file-safe.git"
   },
+  "keywords": [
+    "write",
+    "file",
+    "safe",
+    "fs-safe",
+    "fs",
+    "without",
+    "try",
+    "catch",
+    "parent",
+    "directories",
+    "directory",
+    "recursive"
+  ],
+  "files": [
+    "build"
+  ],
+  "main": "./build/index.js",
   "scripts": {
     "build": "bob build",
-    "prepublishOnly": "yarn build",
-    "test": "node ./test.js"
+    "commit": "bob commit",
+    "lint": "bob lint",
+    "release": "bob publish",
+    "test": "bob test"
   },
   "devDependencies": {
-    "@bconnorwhite/bob": "^1.9.7",
-    "@types/node": "^14.6.1"
+    "@bconnorwhite/bob": "^2.9.2",
+    "@types/mock-fs": "^4.10.0",
+    "@types/node": "^14.6.1",
+    "mock-fs": "^4.13.0"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-bob"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "bob lint commit"
+    }
+  },
+  "npmpackagejsonlint": {
+    "extends": "npm-package-json-lint-config-bob"
+  },
+  "dependencies": {
+    "terminating-newline": "^1.2.2",
+    "write-dir-safe": "^1.0.0"
   }
 }
