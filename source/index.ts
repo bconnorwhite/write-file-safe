@@ -3,7 +3,7 @@ import { dirname } from "path";
 import { writeDir, writeDirSync } from "write-dir-safe";
 import { addTerminatingNewline } from "terminating-newline";
 
-type Options = {
+export type Options = {
   /**
    * Recursively create parent directories if needed. Default: `true`
    */
