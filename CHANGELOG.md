@@ -1,9 +1,21 @@
-# [1.2.0](https://github.com/bconnorwhite/write-file-safe/compare/v1.0.3...v1.2.0) (2020-10-04)
+## [1.2.1](https://github.com/bconnorwhite/write-file-safe/compare/v1.2.0...v1.2.1) (2020-10-04)
+
+
+
+# [1.2.0](https://github.com/bconnorwhite/write-file-safe/compare/v1.1.0...v1.2.0) (2020-10-04)
 
 
 ### Bug Fixes
 
 * export options type ([eb906ca](https://github.com/bconnorwhite/write-file-safe/commit/eb906ca07c838ff006e73c84f6c6038afe8ccb7f))
+
+
+
+# [1.1.0](https://github.com/bconnorwhite/write-file-safe/compare/v1.0.3...v1.1.0) (2020-10-04)
+
+
+### Bug Fixes
+
 * improve types ([be136a6](https://github.com/bconnorwhite/write-file-safe/commit/be136a640ab052a7637a21da03e45693434d2825))
 
 
