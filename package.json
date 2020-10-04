@@ -1,7 +1,7 @@
 {
   "name": "write-file-safe",
   "version": "1.2.1",
-  "description": "Write files, and create parent directories if necessary",
+  "description": "Write files and create parent directories if necessary",
   "license": "MIT",
   "author": "Connor White",
   "homepage": "https://connorwhite.org/github/write-file-safe",

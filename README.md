@@ -1,5 +1,7 @@
 <div align="center">
-  <h1>write-file-safe</h1>
+  <a href="https://github.com/bconnorwhite/write-file-safe">
+    <img alt="write-file-safe" src="assets/header.svg" />
+  </a>
   <a href="https://npmjs.com/package/write-file-safe">
     <img alt="NPM" src="https://img.shields.io/npm/v/write-file-safe.svg">
   </a>
@@ -19,7 +21,7 @@
 
 <br />
 
-> Write files, and create parent directories if necessary.
+> Write files and create parent directories if necessary.
 
 ## Installation
 
@@ -32,12 +34,24 @@ npm install write-file-safe
 ```
 
 ## API
+
 ```ts
-import { writeFile, writeFileSync } from "write-file-safe";
+import { writeFile, writeFileSync, Options } from "write-file-safe";
 
-writeFileSync(path: string, content?: string) => void;
+function writeFile(path: string, content?: string | Buffer): Promise<boolean>;
 
-writeFile(path: string, content?: string) => Promise<void>;
+function writeFileSync(path: string, content?: string | Buffer): boolean;
+
+type Options = {
+  /**
+   * Recursively create parent directories if needed. Default: `true`
+   */
+  recursive?: boolean;
+  /**
+   * Ensure file ends with a newline. Default: `true`
+   */
+  appendNewline?: boolean;
+}
 ```
 
 <br />
@@ -60,6 +74,7 @@ writeFile(path: string, content?: string) => Promise<void>;
 
 ## Related Packages
 
+- [fs-safe](https://www.npmjs.com/package/fs-safe): A simple fs wrapper that doesn't throw
 - [read-file-safe](https://www.npmjs.com/package/read-file-safe): Read files without try catch
 - [remove-file-safe](https://www.npmjs.com/package/remove-file-safe): Remove files without try catch
 - [read-dir-safe](https://www.npmjs.com/package/read-dir-safe): Read directories recursively or non-recursively
