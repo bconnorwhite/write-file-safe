@@ -3,13 +3,12 @@ import mock, { restore } from "mock-fs";
 import { readFile } from "read-file-safe";
 import { writeFile } from "../source";
 
-
 beforeEach(async () => {
   mock({
     "/test": {
       "note.md": "hello world!"
     }
-  })
+  });
 });
 
 afterEach(async () => {
@@ -48,5 +47,19 @@ test("write no recursive", async () => {
   await writeFile("/test/a/note2.md", "hello world!", { recursive: false });
   return readFile("/test/a/note2.md").then((text) => {
     expect(text).toBe(undefined);
+  });
+});
+
+test("write concurrent", async () => {
+  let longString = "";
+  for(let i=0; i<100000; i+=1) {
+    longString += "test";
+  }
+  await Promise.all([
+    writeFile("/test/note2.md", longString),
+    writeFile("/test/note2.md", "ciao world!")
+  ]);
+  return readFile("/test/note2.md").then((text) => {
+    expect(text).toBe("ciao world!\n");
   });
 });

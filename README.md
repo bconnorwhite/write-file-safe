@@ -22,6 +22,7 @@
 <br />
 
 > Write files and create parent directories if necessary.
+> Concurrent file writes are queued to ensure they are applied in order.
 
 ## Installation
 

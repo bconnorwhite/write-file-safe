@@ -8,7 +8,7 @@ beforeEach(async () => {
     "/test": {
       "note.md": "hello world!"
     }
-  })
+  });
 });
 
 afterEach(async () => {
