@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/bconnorwhite/write-file-safe/compare/v1.2.2...v1.2.3) (2021-04-06)
+
+
+### Bug Fixes
+
+* ensure write order on concurrent writes ([e0e5b97](https://github.com/bconnorwhite/write-file-safe/commit/e0e5b97b5f475924a90022549882672a4db403e5))
+
+
+
 ## [1.2.2](https://github.com/bconnorwhite/write-file-safe/compare/v1.2.1...v1.2.2) (2020-10-04)
 
 
