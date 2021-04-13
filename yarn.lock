@@ -8438,6 +8438,11 @@ write-dir-safe@^1.0.0:
   resolved "https://registry.yarnpkg.com/write-dir-safe/-/write-dir-safe-1.0.0.tgz#cd10c19d6975f8b478857264dc45e8ae707098d1"
   integrity sha512-MIJKcy0fuXZ7thQZKqx05bdbYaNiA9byGQqA/7Plam7B0gFsF7xSGEj4FsBtkNaDInu5/4X9/ZPXj0WQieEmuw==
 
+write-dir-safe@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/write-dir-safe/-/write-dir-safe-1.0.1.tgz#db5695a76f33f7a1b28ed48d370bab099d34980a"
+  integrity sha512-wnY2yzWbfawmHs6sbAOsqLf+yEPS3I+9/kRrL9zAESb56KQa7gVG8ofxtZcdIAqsb47lHPXqEMOhzXoFJkE9Pw==
+
 write-file-atomic@^3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/write-file-atomic/-/write-file-atomic-3.0.3.tgz#56bd5c5a5c70481cd19c571bd39ab965a5de56e8"

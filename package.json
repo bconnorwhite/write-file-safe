@@ -39,7 +39,7 @@
     "file-exists-safe": "^1.1.0",
     "remove-file-safe": "^1.0.1",
     "terminating-newline": "^1.2.4",
-    "write-dir-safe": "^1.0.0"
+    "write-dir-safe": "^1.0.1"
   },
   "devDependencies": {
     "@bconnorwhite/bob": "^2.9.4",
