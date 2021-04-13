@@ -1,16 +1,22 @@
 import { beforeEach, test } from "@jest/globals";
 import mock, { restore, directory } from "mock-fs";
+import { tmpdir } from "os";
 import { readFile } from "read-file-safe";
-import { writeFileSync } from "../source";
+import { writeFile } from "../source";
 
 beforeEach(async () => {
   mock({
+    [tmpdir()]: {
+      [`.${process.pid}.0`]: "EXISTS"
+    },
     "/test": {
       "note.md": "hello world!"
     },
     "/no-access": directory({
       mode: 0
     })
+  }, {
+    createTmp: false
   });
 });
 
@@ -18,42 +24,45 @@ afterEach(async () => {
   restore();
 });
 
-test("write sync", async () => {
-  writeFileSync("/test/note2.md", "ciao world!");
+test("write", async () => {
+  await writeFile("/test/note2.md", "ciao world!");
   return readFile("/test/note2.md").then((text) => {
     expect(text).toBe("ciao world!\n");
   });
 });
 
-test("write sync no newline", async () => {
-  writeFileSync("/test/note2.md", "ciao world!", { appendNewline: false });
+test("write no newline", async () => {
+  await writeFile("/test/note2.md", "ciao world!", { appendNewline: false });
   return readFile("/test/note2.md").then((text) => {
     expect(text).toBe("ciao world!");
   });
 });
 
-test("write sync empty", async () => {
-  writeFileSync("/test/note2.md");
+test("write empty", async () => {
+  await writeFile("/test/note2.md");
   return readFile("/test/note2.md").then((text) => {
     expect(text).toBe("\n");
   });
 });
 
 test("write recursive", async () => {
-  writeFileSync("/test/a/note2.md", "hello world!");
+  await writeFile("/test/a/note2.md", "hello world!");
   return readFile("/test/a/note2.md").then((text) => {
     expect(text).toBe("hello world!\n");
   });
 });
 
-test("write no access", () => {
-  const result = writeFileSync("/no-access/note.md", "hello world!");
-  expect(result).toBe(false);
-});
-
-test("write no recursive", async () => {
-  writeFileSync("/test/a/note2.md", "hello world!", { recursive: false });
+test("write no recursive", async (done) => {
+  await writeFile("/test/a/note2.md", "hello world!", { recursive: false });
   return readFile("/test/a/note2.md").then((text) => {
     expect(text).toBe(undefined);
+    done?.();
+  });
+});
+
+test("write no access", async (done) => {
+  writeFile("/no-access/note.md", "hello world!").then((result) => {
+    expect(result).toBe(false);
+    done?.();
   });
 });

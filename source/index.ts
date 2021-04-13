@@ -1,8 +1,15 @@
 import fs, { promises } from "fs";
-import { dirname } from "path";
-import { getLock } from "p-lock";
+import { tmpdir } from "os";
+import { dirname, join } from "path";
 import { writeDir, writeDirSync } from "write-dir-safe";
+import { removeFile } from "remove-file-safe";
 import { addTerminatingNewline } from "terminating-newline";
+
+type TempFile = {
+  path: string;
+  fd: fs.promises.FileHandle;
+  cleanup: () => void;
+};
 
 export type Options = {
   /**
@@ -25,21 +32,49 @@ function handleNewline<T extends string | Buffer>(content: T, appendNewline?: bo
   }
 }
 
-const writeFileLock = getLock();
+let counter = 0;
+
+async function openTemp(): Promise<TempFile | undefined> {
+  const path = join(tmpdir(), `.${process.pid}.${counter}`);
+  counter += 1;
+  return promises.open(path, "wx").then((fd) => {
+    return {
+      fd,
+      path,
+      cleanup: () => {
+        fd.close().then(() => {
+          removeFile(path);
+        });
+      }
+    };
+  }).catch((error) => {
+    if(error && error.code === "EEXIST") {
+      return openTemp();
+    } else {
+      return undefined;
+    }
+  });
+}
 
 export async function writeFile(path: string, content: string | Buffer = "", options: Options = {}): Promise<boolean> {
-  return writeFileLock(path).then(async (release) => {
-    const directory = dirname(path);
-    if(options.recursive ?? true) {
-      await writeDir(directory);
-    }
-    return promises.writeFile(path, handleNewline(content, options.appendNewline)).then(() => {
-      release();
-      return true;
-    }).catch(() => {
-      release();
+  return openTemp().then((temp) => {
+    if(temp) {
+      return promises.writeFile(temp.fd, handleNewline(content, options.appendNewline)).then(async () => {
+        const directory = dirname(path);
+        if(options.recursive ?? true) {
+          await writeDir(directory);
+        }
+        return promises.rename(temp.path, path).then(() => {
+          return true;
+        }).catch(() => {
+          return false;
+        });
+      }).finally(() => {
+        temp.cleanup();
+      });
+    } else {
       return false;
-    });
+    }
   });
 }
 

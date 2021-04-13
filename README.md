@@ -1,15 +1,13 @@
 <div align="center">
-  <a href="https://github.com/bconnorwhite/write-file-safe">
-    <img alt="write-file-safe" src="assets/header.svg" />
-  </a>
+  <h1>write-file-safe</h1>
   <a href="https://npmjs.com/package/write-file-safe">
     <img alt="NPM" src="https://img.shields.io/npm/v/write-file-safe.svg">
   </a>
   <a href="https://github.com/bconnorwhite/write-file-safe">
     <img alt="TypeScript" src="https://img.shields.io/github/languages/top/bconnorwhite/write-file-safe.svg">
   </a>
-  <a href='https://coveralls.io/github/bconnorwhite/write-file-safe?branch=master'>
-    <img alt="Coverage Status" src="https://img.shields.io/coveralls/github/bconnorwhite/write-file-safe.svg?branch=master">
+  <a href="https://coveralls.io/github/bconnorwhite/write-file-safe?branch=master">
+    <img alt="Coverage Status" src="https://coveralls.io/repos/github/bconnorwhite/write-file-safe.svg?branch=master">
   </a>
   <a href="https://github.com/bconnorwhite/write-file-safe">
     <img alt="GitHub Stars" src="https://img.shields.io/github/stars/bconnorwhite/write-file-safe?label=Stars%20Appreciated%21&style=social">
@@ -21,18 +19,19 @@
 
 <br />
 
-> Write files and create parent directories if necessary.
-> Concurrent file writes are queued to ensure they are applied in order.
+> Write files atomically and create parent directories if necessary.
 
 ## Installation
 
-```bash
+```sh
 yarn add write-file-safe
 ```
 
-```bash
+```sh
 npm install write-file-safe
 ```
+
+<br />
 
 ## API
 
@@ -57,21 +56,26 @@ type Options = {
 
 <br />
 
+<h2>Dependencies<img align="right" alt="dependencies" src="https://img.shields.io/david/bconnorwhite/write-file-safe.svg"></h2>
+
+- [remove-file-safe](https://www.npmjs.com/package/remove-file-safe): Remove files without try catch
+- [terminating-newline](https://www.npmjs.com/package/terminating-newline): Add or remove a terminating newline
+- [write-dir-safe](https://www.npmjs.com/package/write-dir-safe): Create directories and their parents recursively
+
+<br />
+
 <h2>Dev Dependencies<img align="right" alt="David" src="https://img.shields.io/david/dev/bconnorwhite/write-file-safe.svg"></h2>
 
-- [@bconnorwhite/bob](https://www.npmjs.com/package/@bconnorwhite/bob): Bob is a toolkit for typescript projects
+- [@bconnorwhite/bob](https://www.npmjs.com/package/@bconnorwhite/bob): Bob is a toolkit for TypeScript projects
 - [@types/mock-fs](https://www.npmjs.com/package/@types/mock-fs): TypeScript definitions for mock-fs
 - [@types/node](https://www.npmjs.com/package/@types/node): TypeScript definitions for Node.js
 - [mock-fs](https://www.npmjs.com/package/mock-fs): A configurable mock file system.  You know, for testing.
-- [read-file-safe](https://www.npmjs.com/package/read-file-safe): Read files without try catch
 
 <br />
 
 <h2>License <img align="right" alt="license" src="https://img.shields.io/npm/l/write-file-safe.svg"></h2>
 
 [MIT](https://opensource.org/licenses/MIT)
-
-<br />
 
 ## Related Packages
 

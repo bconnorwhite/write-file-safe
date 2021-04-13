@@ -6393,11 +6393,6 @@ p-locate@^5.0.0:
   dependencies:
     p-limit "^3.0.2"
 
-p-lock@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/p-lock/-/p-lock-2.0.0.tgz#04bf81ce040f9669cbb4eab297d52ee75a8aa32c"
-  integrity sha512-suad0a3DcVDYFenGxiTksqLKXnfwMsL677qfbHJKajeUe1PFHQ/TEqsszydwCL1P5lqWDIk+mmhXsaqQegFHlw==
-
 p-try@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-1.0.0.tgz#cbc79cdbaf8fd4228e13f621f2b1a237c1b207b3"
@@ -7040,6 +7035,11 @@ regjsparser@^0.6.4:
   integrity sha512-64O87/dPDgfk8/RQqC4gkZoGyyWFIEUTTh80CU6CWuK5vkCGyekIx+oKcEIYtP/RAxSQltCZHCNu/mdd7fqlJw==
   dependencies:
     jsesc "~0.5.0"
+
+remove-file-safe@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/remove-file-safe/-/remove-file-safe-1.0.1.tgz#550c1ec9c59fc115eb51de097a0052ef14b07061"
+  integrity sha512-YzBF0IfrPG9PMGCZsQjMNeIyi9+PPYLDHTcU+bDhgZhfaO6WFpA75+kB5eEkg9C3Puomo6Y50Ll8sCem2TiBdA==
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"

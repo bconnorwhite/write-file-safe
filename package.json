@@ -1,7 +1,7 @@
 {
   "name": "write-file-safe",
   "version": "1.2.3",
-  "description": "Write files and create parent directories if necessary",
+  "description": "Write files atomically and create parent directories if necessary",
   "license": "MIT",
   "author": "Connor White",
   "homepage": "https://connorwhite.org/github/write-file-safe",
@@ -21,7 +21,8 @@
     "parent",
     "directories",
     "directory",
-    "recursive"
+    "recursive",
+    "atomic"
   ],
   "files": [
     "build"
@@ -35,7 +36,7 @@
     "test": "bob test"
   },
   "dependencies": {
-    "p-lock": "^2.0.0",
+    "remove-file-safe": "^1.0.1",
     "terminating-newline": "^1.2.4",
     "write-dir-safe": "^1.0.0"
   },

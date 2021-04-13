@@ -1,13 +1,20 @@
 import { beforeEach, test } from "@jest/globals";
-import mock, { restore } from "mock-fs";
+import mock, { directory, restore } from "mock-fs";
+import { tmpdir } from "os";
 import { readFile } from "read-file-safe";
 import { writeFile } from "../source";
 
 beforeEach(async () => {
   mock({
+    [tmpdir()]: {},
     "/test": {
       "note.md": "hello world!"
-    }
+    },
+    "/no-access": directory({
+      mode: 0
+    })
+  }, {
+    createTmp: false
   });
 });
 
@@ -43,23 +50,17 @@ test("write recursive", async () => {
   });
 });
 
-test("write no recursive", async () => {
+test("write no recursive", async (done) => {
   await writeFile("/test/a/note2.md", "hello world!", { recursive: false });
   return readFile("/test/a/note2.md").then((text) => {
     expect(text).toBe(undefined);
+    done?.();
   });
 });
 
-test("write concurrent", async () => {
-  let longString = "";
-  for(let i=0; i<100000; i+=1) {
-    longString += "test";
-  }
-  await Promise.all([
-    writeFile("/test/note2.md", longString),
-    writeFile("/test/note2.md", "ciao world!")
-  ]);
-  return readFile("/test/note2.md").then((text) => {
-    expect(text).toBe("ciao world!\n");
+test("write no access", async (done) => {
+  writeFile("/no-access/note.md", "hello world!").then((result) => {
+    expect(result).toBe(false);
+    done?.();
   });
 });
