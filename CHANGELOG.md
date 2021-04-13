@@ -1,3 +1,18 @@
+# [1.3.0](https://github.com/bconnorwhite/write-file-safe/compare/v1.2.3...v1.3.0) (2021-04-13)
+
+
+### Bug Fixes
+
+* dependency bump ([b17ac49](https://github.com/bconnorwhite/write-file-safe/commit/b17ac493ea3185911f0a3c64fc8a2eb5f7e5583e))
+
+
+### Features
+
+* atomic writes ([5fed3ae](https://github.com/bconnorwhite/write-file-safe/commit/5fed3aeda77c62d7d700c2f99cc56856cf80b09d))
+* overwrite option flag ([2837866](https://github.com/bconnorwhite/write-file-safe/commit/2837866859f86a76004112a14ad4571b068087ad))
+
+
+
 ## [1.2.3](https://github.com/bconnorwhite/write-file-safe/compare/v1.2.2...v1.2.3) (2021-04-06)
 
 
