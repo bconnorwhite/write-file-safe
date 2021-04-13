@@ -38,6 +38,13 @@ test("no overwrite", async () => {
   });
 });
 
+test("unnecessary no overwrite", async () => {
+  await writeFile("/test/note.md2", "ciao world!", { overwrite: false });
+  return readFile("/test/note.md2").then((text) => {
+    expect(text).toBe("ciao world!\n");
+  });
+});
+
 test("write no newline", async () => {
   await writeFile("/test/note2.md", "ciao world!", { appendNewline: false });
   return readFile("/test/note2.md").then((text) => {
