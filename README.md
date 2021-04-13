@@ -58,6 +58,7 @@ type Options = {
 
 <h2>Dependencies<img align="right" alt="dependencies" src="https://img.shields.io/david/bconnorwhite/write-file-safe.svg"></h2>
 
+- [file-exists-safe](https://www.npmjs.com/package/file-exists-safe): Check if a file exists without try catch
 - [remove-file-safe](https://www.npmjs.com/package/remove-file-safe): Remove files without try catch
 - [terminating-newline](https://www.npmjs.com/package/terminating-newline): Add or remove a terminating newline
 - [write-dir-safe](https://www.npmjs.com/package/write-dir-safe): Create directories and their parents recursively

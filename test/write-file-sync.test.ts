@@ -25,6 +25,13 @@ test("write sync", async () => {
   });
 });
 
+test("no overwrite", async () => {
+  writeFileSync("/test/note.md", "ciao world!", { overwrite: false });
+  return readFile("/test/note.md").then((text) => {
+    expect(text).toBe("hello world!");
+  });
+});
+
 test("write sync no newline", async () => {
   writeFileSync("/test/note2.md", "ciao world!", { appendNewline: false });
   return readFile("/test/note2.md").then((text) => {

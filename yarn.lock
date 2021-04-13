@@ -3826,6 +3826,11 @@ file-entry-cache@^5.0.1:
   dependencies:
     flat-cache "^2.0.1"
 
+file-exists-safe@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/file-exists-safe/-/file-exists-safe-1.1.0.tgz#db73e875853d47a371f1f3cbec9e6b321e9096df"
+  integrity sha512-F0gcLPWcrLnYxlU46sf0UdgDsVaYCDyVVVsT1fpfUJ726R+GmS220+6LCPT1xbU8r6lCrwlG1gnKLF7slnObQw==
+
 file-uri-to-path@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz#553a7b8446ff6f684359c445f1e37a05dacc33dd"

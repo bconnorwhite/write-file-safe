@@ -3,6 +3,7 @@ import { tmpdir } from "os";
 import { dirname, join } from "path";
 import { writeDir, writeDirSync } from "write-dir-safe";
 import { removeFile } from "remove-file-safe";
+import { fileExists, fileExistsSync } from "file-exists-safe";
 import { addTerminatingNewline } from "terminating-newline";
 
 type TempFile = {
@@ -20,6 +21,10 @@ export type Options = {
    * Ensure file ends with a newline. Default: `true`
    */
   appendNewline?: boolean;
+  /**
+   * Write even if file already exists. Default: `true`
+   */
+  overwrite?: boolean;
 };
 
 type ReturnType<T> = T extends Buffer ? Buffer : string;
@@ -57,6 +62,12 @@ async function openTemp(): Promise<TempFile | undefined> {
 }
 
 export async function writeFile(path: string, content: string | Buffer = "", options: Options = {}): Promise<boolean> {
+  if(options.overwrite === false) {
+    const exists = await fileExists(path);
+    if(exists) {
+      return true;
+    }
+  }
   return openTemp().then((temp) => {
     if(temp) {
       return promises.writeFile(temp.fd, handleNewline(content, options.appendNewline)).then(async () => {
@@ -79,6 +90,12 @@ export async function writeFile(path: string, content: string | Buffer = "", opt
 }
 
 export function writeFileSync(path: string, content: string | Buffer = "", options: Options = {}): boolean {
+  if(options.overwrite === false) {
+    const exists = fileExistsSync(path);
+    if(exists) {
+      return true;
+    }
+  }
   const directory = dirname(path);
   if(options.recursive ?? true) {
     writeDirSync(directory);
