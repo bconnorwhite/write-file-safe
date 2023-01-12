@@ -1,7 +1,7 @@
-import { beforeEach, test } from "@jest/globals";
+import { beforeEach, test, afterEach, expect } from "@jest/globals";
 import mock, { directory, restore } from "mock-fs";
 import { tmpdir } from "os";
-import { writeFile } from "../source";
+import { writeFile } from "../source/index.js";
 
 beforeEach(async () => {
   mock({
@@ -18,9 +18,7 @@ afterEach(async () => {
   restore();
 });
 
-test("write no access", async (done) => {
-  writeFile("/test/note.md", "hello world!").then((result) => {
-    expect(result).toBe(false);
-    done?.();
-  });
+test("write no access", async () => {
+  const result = await writeFile("/test/note.md", "hello world!");
+  expect(result).toBe(false);
 });

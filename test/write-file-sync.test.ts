@@ -1,4 +1,4 @@
-import { beforeEach, test } from "@jest/globals";
+import { beforeEach, test, afterEach, expect } from "@jest/globals";
 import mock, { restore, directory } from "mock-fs";
 import { readFile } from "read-file-safe";
 import { writeFileSync } from "../source";
@@ -20,44 +20,38 @@ afterEach(async () => {
 
 test("write sync", async () => {
   writeFileSync("/test/note2.md", "ciao world!");
-  return readFile("/test/note2.md").then((text) => {
-    expect(text).toBe("ciao world!\n");
-  });
+  const text = await readFile("/test/note2.md");
+  expect(text).toBe("ciao world!\n");
 });
 
 test("no overwrite", async () => {
   writeFileSync("/test/note.md", "ciao world!", { overwrite: false });
-  return readFile("/test/note.md").then((text) => {
-    expect(text).toBe("hello world!");
-  });
+  const text = await readFile("/test/note.md");
+  expect(text).toBe("hello world!");
 });
 
 test("unnecessary no overwrite", async () => {
   writeFileSync("/test/note2.md", "ciao world!", { overwrite: false });
-  return readFile("/test/note2.md").then((text) => {
-    expect(text).toBe("ciao world!\n");
-  });
+  const text = await readFile("/test/note2.md");
+  expect(text).toBe("ciao world!\n");
 });
 
 test("write sync no newline", async () => {
   writeFileSync("/test/note2.md", "ciao world!", { appendNewline: false });
-  return readFile("/test/note2.md").then((text) => {
-    expect(text).toBe("ciao world!");
-  });
+  const text = await readFile("/test/note2.md");
+  expect(text).toBe("ciao world!");
 });
 
 test("write sync empty", async () => {
   writeFileSync("/test/note2.md");
-  return readFile("/test/note2.md").then((text) => {
-    expect(text).toBe("\n");
-  });
+  const text = await readFile("/test/note2.md");
+  expect(text).toBe("\n");
 });
 
 test("write recursive", async () => {
   writeFileSync("/test/a/note2.md", "hello world!");
-  return readFile("/test/a/note2.md").then((text) => {
-    expect(text).toBe("hello world!\n");
-  });
+  const text = await readFile("/test/a/note2.md");
+  expect(text).toBe("hello world!\n");
 });
 
 test("write no access", () => {

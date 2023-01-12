@@ -1,6 +1,6 @@
-import { beforeEach, test } from "@jest/globals";
+import { beforeEach, test, afterEach, expect } from "@jest/globals";
 import mock, { restore, directory } from "mock-fs";
-import { tmpdir } from "os";
+import { tmpdir } from "node:os";
 import { readFile } from "read-file-safe";
 import { writeFile } from "../source";
 
@@ -26,57 +26,47 @@ afterEach(async () => {
 
 test("write", async () => {
   await writeFile("/test/note2.md", "ciao world!");
-  return readFile("/test/note2.md").then((text) => {
-    expect(text).toBe("ciao world!\n");
-  });
+  const text = await readFile("/test/note2.md");
+  expect(text).toBe("ciao world!\n");
 });
 
 test("no overwrite", async () => {
   await writeFile("/test/note.md", "ciao world!", { overwrite: false });
-  return readFile("/test/note.md").then((text) => {
-    expect(text).toBe("hello world!");
-  });
+  const text = await readFile("/test/note.md");
+  expect(text).toBe("hello world!");
 });
 
 test("unnecessary no overwrite", async () => {
   await writeFile("/test/note.md2", "ciao world!", { overwrite: false });
-  return readFile("/test/note.md2").then((text) => {
-    expect(text).toBe("ciao world!\n");
-  });
+  const text = await readFile("/test/note.md2");
+  expect(text).toBe("ciao world!\n");
 });
 
 test("write no newline", async () => {
   await writeFile("/test/note2.md", "ciao world!", { appendNewline: false });
-  return readFile("/test/note2.md").then((text) => {
-    expect(text).toBe("ciao world!");
-  });
+  const text = await readFile("/test/note2.md");
+  expect(text).toBe("ciao world!");
 });
 
 test("write empty", async () => {
   await writeFile("/test/note2.md");
-  return readFile("/test/note2.md").then((text) => {
-    expect(text).toBe("\n");
-  });
+  const text = await readFile("/test/note2.md");
+  expect(text).toBe("\n");
 });
 
 test("write recursive", async () => {
   await writeFile("/test/a/note2.md", "hello world!");
-  return readFile("/test/a/note2.md").then((text) => {
-    expect(text).toBe("hello world!\n");
-  });
+  const text = await readFile("/test/a/note2.md");
+  expect(text).toBe("hello world!\n");
 });
 
-test("write no recursive", async (done) => {
+test("write no recursive", async () => {
   await writeFile("/test/a/note2.md", "hello world!", { recursive: false });
-  return readFile("/test/a/note2.md").then((text) => {
-    expect(text).toBe(undefined);
-    done?.();
-  });
+  const text = await readFile("/test/a/note2.md");
+  expect(text).toBe(undefined);
 });
 
-test("write no access", async (done) => {
-  writeFile("/no-access/note.md", "hello world!").then((result) => {
-    expect(result).toBe(false);
-    done?.();
-  });
+test("write no access", async () => {
+  const result = await writeFile("/no-access/note.md", "hello world!");
+  expect(result).toBe(false);
 });
