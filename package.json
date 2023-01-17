@@ -1,6 +1,6 @@
 {
   "name": "write-file-safe",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Write files atomically, and create parent directories if necessary",
   "license": "MIT",
   "private": false,

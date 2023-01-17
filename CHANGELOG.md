@@ -1,3 +1,12 @@
+## [2.0.1](https://github.com/bconnorwhite/write-file-safe/compare/v2.0.0...v2.0.1) (2023-01-17)
+
+
+### Bug Fixes
+
+* add a catch for case where can't write to temp file ([02959db](https://github.com/bconnorwhite/write-file-safe/commit/02959db346115af740591baca3a5207496809c76))
+
+
+
 # [2.0.0](https://github.com/bconnorwhite/write-file-safe/compare/v1.3.1...v2.0.0) (2023-01-12)
 
 
