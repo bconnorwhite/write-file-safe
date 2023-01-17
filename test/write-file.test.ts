@@ -1,6 +1,6 @@
 import { beforeEach, test, afterEach, expect } from "@jest/globals";
 import mock, { directory, restore } from "mock-fs";
-import { tmpdir } from "node:os";
+import { tmpdir } from "os";
 import { readFile } from "read-file-safe";
 import { writeFile } from "../source/index.js";
 

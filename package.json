@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "file-exists-safe": "^2.0.0",
+    "read-file-safe": "^2.1.0",
     "remove-file-safe": "^3.0.0",
     "terminating-newline": "^2.0.0",
     "write-dir-safe": "^2.0.1"
