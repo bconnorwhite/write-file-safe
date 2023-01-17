@@ -78,13 +78,15 @@ export async function writeFile(path: string, content: string | Buffer = "", opt
         return promises.rename(temp.path, path).then(() => {
           return true;
         }).catch(() => {
-          return false;
+          return false; // Unable to rename temp file
         });
+      }).catch(() => {
+        return false; // Unable to write to temp file
       }).finally(() => {
         temp.cleanup();
       });
     } else {
-      return false;
+      return false; // Unable to resolve temp directory
     }
   });
 }
