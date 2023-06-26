@@ -77,8 +77,15 @@ export async function writeFile(path: string, content: string | Buffer = "", opt
         }
         return promises.rename(temp.path, path).then(() => {
           return true;
-        }).catch(() => {
-          return false; // Unable to rename temp file
+        }).catch(async (error) => {
+          if(error.code === "EXDEV") {
+            // temp file and target file are on different volumes, so we need to copy
+            await promises.copyFile(temp.path, path);
+            await promises.unlink(temp.path);
+            return true;
+          } else {
+            return false; // Unable to rename temp file
+          }
         });
       }).catch(() => {
         return false; // Unable to write to temp file
