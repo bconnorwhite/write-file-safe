@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/bconnorwhite/write-file-safe/compare/v2.0.1...v2.0.2) (2023-06-26)
+
+
+### Bug Fixes
+
+* copy fallback on EXDEV ([4e1a1c6](https://github.com/bconnorwhite/write-file-safe/commit/4e1a1c6dc4ff6c1d074ade10c3021bf6c6daf6c6))
+
+
+
 ## [2.0.1](https://github.com/bconnorwhite/write-file-safe/compare/v2.0.0...v2.0.1) (2023-01-17)
 
 
