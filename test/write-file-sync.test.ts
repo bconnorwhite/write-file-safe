@@ -1,7 +1,7 @@
 import { beforeEach, test, afterEach, expect } from "@jest/globals";
 import mock, { restore, directory } from "mock-fs";
 import { readFile } from "read-file-safe";
-import { writeFileSync } from "../source";
+import { writeFileSync } from "../source/index.js";
 
 beforeEach(async () => {
   mock({
