@@ -1,3 +1,12 @@
+## [2.0.3](https://github.com/bconnorwhite/write-file-safe/compare/v2.0.2...v2.0.3) (2023-06-29)
+
+
+### Bug Fixes
+
+* make sure overwritten files have the same mode as the original ([8e32077](https://github.com/bconnorwhite/write-file-safe/commit/8e32077c7778b6d3d6c9081939fcef5450ea89bb))
+
+
+
 ## [2.0.2](https://github.com/bconnorwhite/write-file-safe/compare/v2.0.1...v2.0.2) (2023-06-26)
 
 
