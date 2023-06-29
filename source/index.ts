@@ -3,7 +3,6 @@ import { tmpdir } from "os";
 import { dirname, join } from "path";
 import { writeDir, writeDirSync } from "write-dir-safe";
 import { removeFile } from "remove-file-safe";
-import { fileExists, fileExistsSync } from "file-exists-safe";
 import { addTerminatingNewline } from "terminating-newline";
 
 type TempFile = {
@@ -62,19 +61,27 @@ async function openTemp(): Promise<TempFile | undefined> {
 }
 
 export async function writeFile(path: string, content: string | Buffer = "", options: Options = {}): Promise<boolean> {
-  if(options.overwrite === false) {
-    const exists = await fileExists(path);
-    if(exists) {
+  let mode: number | undefined;
+  const stat = await promises.stat(path).catch(() => undefined);
+  if(stat) {
+    if(options.overwrite === false) {
       return true;
     }
+    mode = stat.mode;
   }
   return openTemp().then((temp) => {
     if(temp) {
       return promises.writeFile(temp.fd, handleNewline(content, options.appendNewline)).then(async () => {
+        // Set the mode of the temp file to match the original file, if one was found
+        if(mode !== undefined) {
+          await promises.chmod(temp.path, mode);
+        }
+        // Make sure a directory exists for the target file
         const directory = dirname(path);
         if(options.recursive ?? true) {
           await writeDir(directory);
         }
+        // Rename the temp file to the target file
         return promises.rename(temp.path, path).then(() => {
           return true;
         }).catch(async (error) => {
@@ -99,11 +106,16 @@ export async function writeFile(path: string, content: string | Buffer = "", opt
 }
 
 export function writeFileSync(path: string, content: string | Buffer = "", options: Options = {}): boolean {
-  if(options.overwrite === false) {
-    const exists = fileExistsSync(path);
-    if(exists) {
+  let mode: number | undefined;
+  try {
+    // eslint-disable-next-line no-sync
+    const stat = fs.statSync(path);
+    if(options.overwrite === false) {
       return true;
     }
+    mode = stat.mode;
+  } catch(e) {
+    // File does not exist
   }
   const directory = dirname(path);
   if(options.recursive ?? true) {
@@ -112,6 +124,10 @@ export function writeFileSync(path: string, content: string | Buffer = "", optio
   try {
     // eslint-disable-next-line no-sync
     fs.writeFileSync(path, handleNewline(content, options.appendNewline));
+    if(mode !== undefined) {
+      // eslint-disable-next-line no-sync
+      fs.chmodSync(path, mode);
+    }
     return true;
   } catch(e) {
     return false;
